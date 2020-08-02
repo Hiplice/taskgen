@@ -1,15 +1,21 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+        {% load bootstrap %}
         <title>Django Authentication Example</title>
     </head>
 
     <body>
+    <div class="container">
+        <h2>Регистрация</h2>
         <form method="POST">
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Send">
+            <div class="form-col">
+                {{ form|bootstrap }}
+                <input type="submit" value="Зарегистрироваться" >
+            </div>
         </form>
+    </div>
     </body>
 </html>

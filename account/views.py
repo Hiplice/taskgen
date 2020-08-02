@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .forms import *
 from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
+from .models import *
 
 
 form_fields = {
@@ -11,17 +13,33 @@ form_fields = {
 
 def auth(request):
     if request.method == 'POST':
-        data = get_post_data(form_fields['auth'], request)
-        return HttpResponse("<h2>Hello, {0}</h2>".format(data['login']))
+        form = AuthForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            user = authenticate(username=data['username'], password=data['password'])
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponse('Авторизация прошла успешно.')
+                else:
+                    return HttpResponse('Аккаунт был удалён.')
+            else:
+                return HttpResponse('Неверно введён логин/пароль.')
+
     else:
-        auth_form = AuthForm()
-        return render(request, 'account/auth.html', {'form': auth_form})
+        form = AuthForm()
+    return render(request, 'account/auth.html', {'form': form})
 
 
 def register(request):
     if request.method == 'POST':
-        data = get_post_data(form_fields['register'], request)
-        return HttpResponse("<h2>Hello, {0} {1}</h2>".format(data['name'], data['surname']))
+        form = RegisterForm(request.POST)
+        data = form.cleaned_data
+
+        added = User.objects.create()
+        return HttpResponse("{0}".format(added))
     else:
         register_form = RegisterForm()
         return render(request, 'account/register.html', {'form': register_form})
