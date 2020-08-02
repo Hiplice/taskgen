@@ -36,11 +36,12 @@ def auth(request):
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        data = form.cleaned_data
+        if form.is_valid():
+            data = form.cleaned_data
+            return HttpResponse("{}/{}".format(data['first_name'], data['second_name']))
 
-        added = User.objects.create()
-        return HttpResponse("{0}".format(added))
+        return HttpResponse("Регистрация недоступна")
     else:
-        register_form = RegisterForm()
-        return render(request, 'account/register.html', {'form': register_form})
+        form = RegisterForm()
+    return render(request, 'account/register.html', {'form': form})
 
