@@ -6,6 +6,10 @@
     </head>
 
     <body>
-        Ну тут да типа вообще регистрация
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Send">
+        </form>
     </body>
 </html>
