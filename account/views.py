@@ -37,10 +37,11 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            data = form.cleaned_data
-            return HttpResponse("{}/{}".format(data['first_name'], data['second_name']))
+            new_user = form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password'])
+            new_user.save()
 
-        return HttpResponse("Регистрация недоступна")
+        return HttpResponse('Регистрация прошла успешно.')
     else:
         form = RegisterForm()
     return render(request, 'account/register.html', {'form': form})
