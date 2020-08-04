@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def patterns(request):
+def show_tests(request):
     return HttpResponse('Вот тут управление шаблонами короче')
 
 
