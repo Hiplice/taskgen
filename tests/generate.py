@@ -16,6 +16,15 @@ def generate_answers(correct_answer, n_answers):
     return answers
 
 
+class OneQuestion:
+
+    def __init__(self, text, answers, correct_answer, number):
+        self.text = text
+        self.answers = answers
+        self.correct_answer = correct_answer
+        self.number = number
+
+
 class TestGenerator:
 
     def __init__(self, topic_number, n_questions, n_answers):
@@ -23,8 +32,6 @@ class TestGenerator:
         self.n_questions = n_questions
         self.n_answers = n_answers
         self.questions = [0]*n_questions
-        self.answers = [0]*n_questions
-        self.correct_answers = [-1]*n_questions
 
         self.generate_questions()
 
@@ -39,6 +46,8 @@ class TestGenerator:
             while generated_number in used_patterns:
                 generated_number = randint(0, total_patterns - 1)
 
-            self.questions[i], self.correct_answers[i] = compute_pattern(all_patterns[generated_number].text, '$')
-            self.answers[i] = generate_answers(self.correct_answers[i], self.n_answers)
+            question, correct_answer = compute_pattern(all_patterns[generated_number].text, '$')
+            answers = generate_answers(correct_answer, self.n_answers)
+
+            self.questions[i] = OneQuestion(question, answers, correct_answer, i + 1)
 

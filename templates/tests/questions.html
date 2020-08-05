@@ -1,7 +1,24 @@
 {% extends "tests/base.html" %}
-{% block title %}Тест{% endblock title %}
-{% block header %}Тест{% endblock header %}
+{% block title %}Тест #{{ data.topic_number }}{% endblock title %}
+{% block header %}Тест #{{ data.topic_number }}{% endblock header %}
 
 {%  block content %}
+    {% for question in data.questions %}
+        <div class="card" style="margin-top: 10px; margin-bottom: 10px">
+            <h5 class="card-header">Вопрос #{{ question.number }}</h5>
+            <div class="card-body">
+                <h5 class="card-text">Что будет выведено в результате выполнения следующего кода?</h5>
+                <pre style="color: #2f6f9f; margin-top: 20px; margin-bottom: 20px"><code>{{ question.text }}</code></pre>
 
+                {% for answer in question.answers %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios">
+                        <label class="form-check-label">
+                            {{ answer }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
 {% endblock content %}
