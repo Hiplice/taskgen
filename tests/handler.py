@@ -40,7 +40,11 @@ def compare_result(request):
         chosen_answers[i] = int(request.POST["question_" + str(i + 1)])
 
     db_test.chosen_answers = json.dumps(chosen_answers)
-    db_test.save()
+    db_test.save(update_fields=["chosen_answers"])
+
+    user = request.user
+    user.active_test = None
+    user.save(update_fields=["active_test"])
 
     for i in range(n_questions):
         answers_accuracy[i] = correct_answers[i] == chosen_answers[i]
