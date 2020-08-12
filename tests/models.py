@@ -2,12 +2,18 @@ from django.db import models
 from account.models import User
 
 
-class Topic(models.Model):
+class Subject(models.Model):
     name = models.CharField(max_length=50)
 
 
-class Question(models.Model):
-    test_number = models.ForeignKey(Topic, on_delete=models.CASCADE)
+class Topic(models.Model):
+    subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+
+class Pattern(models.Model):
+    topic_number = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    difficulty = models.PositiveIntegerField()
     text = models.TextField()
 
 

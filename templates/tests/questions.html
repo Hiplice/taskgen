@@ -3,6 +3,8 @@
 {% block header %}Тест #{{ data.topic_number }}{% endblock header %}
 
 {%  block content %}
+    <form method="post">
+    {% csrf_token %}
     {% for question in data.questions %}
         <div class="card" style="margin-top: 10px; margin-bottom: 10px">
             <h5 class="card-header">Вопрос #{{ question.number }}</h5>
@@ -12,8 +14,8 @@
 
                 {% for answer in question.answers %}
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios">
-                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="question_{{ question.number }}" id="{{ question.number }}_option_{{ answer }}">
+                        <label class="form-check-label" for="{{ question.number }}_option_{{ answer }}">
                             {{ answer }}
                         </label>
                     </div>
@@ -21,4 +23,6 @@
             </div>
         </div>
     {% endfor %}
+    <input class="btn btn-primary btn-lg" type="submit" value="Завершить тест" style="margin-bottom: 20px; align-self: end">
+    </form>
 {% endblock content %}

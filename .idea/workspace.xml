@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/analysis/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tests/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskgen/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskgen/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tests/questions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/questions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/generate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,6 +118,10 @@
       <workItem from="1596482276124" duration="452000" />
       <workItem from="1596616399885" duration="9990000" />
       <workItem from="1596655997956" duration="4011000" />
+      <workItem from="1597048219567" duration="23000" />
+      <workItem from="1597048301347" duration="3533000" />
+      <workItem from="1597077724027" duration="6159000" />
+      <workItem from="1597240846340" duration="1464000" />
     </task>
     <servers />
   </component>
@@ -129,16 +140,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests/views.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

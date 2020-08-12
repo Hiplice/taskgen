@@ -32,7 +32,7 @@ class User(AbstractUser):
     )
     """
 
-    moderator = models.BooleanField(default=False)
+    is_teacher = models.BooleanField(default=False)
 
 
 def __str__(self):

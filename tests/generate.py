@@ -1,6 +1,6 @@
 from patterncomputer import compute_pattern
-from .models import Question
 from random import randint
+from .models import Pattern
 
 
 def generate_answers(correct_answer, n_answers):
@@ -36,7 +36,7 @@ class TestGenerator:
         self.generate_questions()
 
     def generate_questions(self):
-        all_patterns = Question.objects.filter(test_number=self.topic_number)
+        all_patterns = Pattern.objects.filter(test_number=self.topic_number)
         total_patterns = len(all_patterns)
         used_patterns = set()
 
@@ -50,4 +50,3 @@ class TestGenerator:
             answers = generate_answers(correct_answer, self.n_answers)
 
             self.questions[i] = OneQuestion(question, answers, correct_answer, i + 1)
-
