@@ -1,5 +1,6 @@
 from django.db import models
 from account.models import User
+from django.utils import timezone
 
 
 class Subject(models.Model):
@@ -18,9 +19,14 @@ class Pattern(models.Model):
 
 
 class Test(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    difficulty = models.PositiveIntegerField()
     questions = models.TextField()
     answers = models.TextField()
+    correct_answers = models.TextField()
+    chosen_answers = models.TextField()
+    start_time = models.TimeField(default=timezone.now)
 
 
 def __str__(self):

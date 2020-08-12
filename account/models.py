@@ -33,6 +33,7 @@ class User(AbstractUser):
     """
 
     is_teacher = models.BooleanField(default=False)
+    active_test = models.PositiveIntegerField(blank=True, null=True)
 
 
 def __str__(self):

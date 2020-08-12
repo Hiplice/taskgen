@@ -27,16 +27,17 @@ class OneQuestion:
 
 class TestGenerator:
 
-    def __init__(self, topic_number, n_questions, n_answers):
+    def __init__(self, topic_number, n_questions, n_answers, difficulty):
         self.topic_number = topic_number
         self.n_questions = n_questions
         self.n_answers = n_answers
+        self.difficulty = difficulty
         self.questions = [0]*n_questions
 
         self.generate_questions()
 
     def generate_questions(self):
-        all_patterns = Pattern.objects.filter(test_number=self.topic_number)
+        all_patterns = Pattern.objects.filter(topic_number=self.topic_number)
         total_patterns = len(all_patterns)
         used_patterns = set()
 

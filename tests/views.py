@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .generate import TestGenerator
+from . import handler
+from django.http import HttpResponse
 
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
@@ -13,6 +14,12 @@ def show_tests(request):
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
 def start_test(request, test_number):
-    test = TestGenerator(test_number, 3, 4)
+    if request.method == 'POST':
+        accuracy = handler.compare_result(request)
+        result = HttpResponse(accuracy)
+    else:
+        test = TestGenerator(test_number, 10, 4, 0)
+        handler.create_test(test, request)
+        result = render(request, 'tests/questions.html', {'data': test})
 
-    return render(request, 'tests/questions.html', {'data': test})
+    return result

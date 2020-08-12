@@ -14,7 +14,7 @@
 
                 {% for answer in question.answers %}
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question_{{ question.number }}" id="{{ question.number }}_option_{{ answer }}">
+                        <input class="form-check-input" type="radio" value="{{ answer }}" name="question_{{ question.number }}" id="{{ question.number }}_option_{{ answer }}" required>
                         <label class="form-check-label" for="{{ question.number }}_option_{{ answer }}">
                             {{ answer }}
                         </label>
