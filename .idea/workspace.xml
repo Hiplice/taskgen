@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/tests/addtest.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tests/questions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/questions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/generate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tests/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tests/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/tests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,6 +45,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -56,9 +56,10 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DBE.Init.BalloonShown" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -119,6 +120,12 @@
       <workItem from="1597048301347" duration="3533000" />
       <workItem from="1597077724027" duration="6159000" />
       <workItem from="1597240846340" duration="1464000" />
+      <workItem from="1597669012124" duration="2384000" />
+      <workItem from="1597768701318" duration="22000" />
+      <workItem from="1597937577297" duration="6269000" />
+      <workItem from="1598029198034" duration="7000" />
+      <workItem from="1598109303427" duration="2924000" />
+      <workItem from="1598166938285" duration="433000" />
     </task>
     <servers />
   </component>
