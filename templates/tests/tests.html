@@ -1,20 +1,13 @@
 {% extends "tests/base.html" %}
-{% block title %}Список тем{% endblock title %}
-{% block header %}Список тестов по дисциплине "Алгоритмизация и программирование".{% endblock header %}
+{% block title %}Список тестов{% endblock title %}
+{% block header %}Список тестов{% endblock header %}
 
 {% block content %}
     <div class="card"><ul class="list-group list-group-flush">
     {% for topic in data %}
         <a href="{{ topic.id }}">
-        <li class="list-group-item list-group-item-action">
-            <div style="display: flex; flex-direction: row; justify-content: space-between">
-                <div>
-                    {{ topic.id }}. {{ topic.name}}
-                </div>
-                <div style="color: #9c9">
-                    100 / 100
-                </div>
-            </div>
+        <li class="list-group-item">
+            {{ topic.id }}. {{ topic.name}}
         </li></a>
     {% endfor %}
     </ul></div>

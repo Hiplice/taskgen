@@ -23,8 +23,3 @@ def start_test(request, test_number):
         result = render(request, 'tests/questions.html', {'data': test})
 
     return result
-
-
-@login_required(login_url='/account/auth/', redirect_field_name='')
-def add_test(request):
-    return render(request, 'tests/addtest.html')
