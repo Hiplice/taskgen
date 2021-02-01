@@ -14,6 +14,7 @@ html, body {
 .content-container {
     padding: 40px;
     width: 100%;
+    overflow: scroll;
 }
 
 .menu-container {

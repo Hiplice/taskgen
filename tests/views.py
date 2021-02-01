@@ -13,8 +13,9 @@ def redirect_from_root(request):
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
 def show_tests(request):
-    questions = Topic.objects.all()
-    return render(request, 'tests/tests.html', {'data': questions})
+    tests_information = handler.get_topic_information(request)
+
+    return render(request, 'tests/tests.html', {'data': tests_information})
 
 
 @login_required(login_url='/account/auth/', redirect_field_name='')

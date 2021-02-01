@@ -8,7 +8,7 @@ class Subject(models.Model):
 
 
 class Topic(models.Model):
-    subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
 
 
@@ -27,6 +27,13 @@ class Test(models.Model):
     correct_answers = models.TextField()
     chosen_answers = models.TextField()
     start_time = models.TimeField(default=timezone.now)
+
+
+class TestData(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    attempts = models.PositiveSmallIntegerField()
+    best_result = models.PositiveSmallIntegerField()
 
 
 def __str__(self):

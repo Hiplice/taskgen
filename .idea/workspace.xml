@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tests/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tests/questions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/questions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tests/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/tests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/tests/static/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +137,8 @@
       <workItem from="1598029198034" duration="7000" />
       <workItem from="1598109303427" duration="2924000" />
       <workItem from="1598166938285" duration="433000" />
-      <workItem from="1612170532384" duration="19588000" />
+      <workItem from="1612170532384" duration="19781000" />
+      <workItem from="1612194611146" duration="5851000" />
     </task>
     <servers />
   </component>
@@ -150,16 +157,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests/handler.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

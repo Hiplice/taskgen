@@ -8,16 +8,18 @@
     <div class="accordion" id="testList">
         {% for topic in data %}
             <div class="accordion-item">
-                <h2 class="accordion-header" id="TopicHeading{{ topic.id }}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{ topic.id }}" aria-expanded="false" aria-controls="Collapse{{ topic.id }}">
-                        {{ topic.id }} / {{ topic.name }}
+                <h2 class="accordion-header" id="TopicHeading{{ topic.topic_id }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{ topic.topic_id }}" aria-expanded="false" aria-controls="Collapse{{ topic.topic_id }}">
+                        {{ topic.name }}
                         </button>
                 </h2>
-                <div id="Collapse{{ topic.id }}" class="accordion-collapse collapse" aria-labelledby="TopicHeading{{ topic.id }}" data-bs-parent="#testList">
+                <div id="Collapse{{ topic.topic_id }}" class="accordion-collapse collapse" aria-labelledby="TopicHeading{{ topic.topic_id }}" data-bs-parent="#testList">
                     <div class="accordion-body">
-                        <p><strong>Лучший результат:</strong> 10/10</p>
-                        <p><strong>Использовано попыток:</strong> 10/10</p>
-                        <a class="btn btn-primary" role="button" href="{{ topic.id }}">Начать прохождение</a>
+                        <p><strong>Лучший результат:</strong> {{ topic.points }}/10</p>
+                        <p><strong>Использовано попыток:</strong> {{ topic.attempts }}/3</p>
+                        {% if topic.attempts < 3 %}
+                        <a class="btn btn-primary" role="button" href="{{ topic.topic_id }}">Начать прохождение</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

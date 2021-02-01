@@ -7,9 +7,8 @@
     {% csrf_token %}
     {% for question in data.questions %}
         <div class="card" style="margin-top: 10px; margin-bottom: 10px">
-            <h5 class="card-header">Вопрос #{{ question.number }}</h5>
+            <h5 style="padding: 15px 20px" class="card-header">{{ question.number }}. Что будет выведено в результате выполнения кода?</h5>
             <div class="card-body">
-                <h5 class="card-text">Что будет выведено в результате выполнения следующего кода?</h5>
                 <pre style="color: #2f6f9f; margin-top: 20px; margin-bottom: 20px"><code>{{ question.text }}</code></pre>
 
                 {% for answer in question.answers %}
@@ -23,6 +22,6 @@
             </div>
         </div>
     {% endfor %}
-    <input class="btn btn-primary btn-lg" type="submit" value="Завершить тест" style="margin-bottom: 20px; align-self: end">
+    <input class="btn btn-primary" type="submit" value="Завершить тест" style="margin-bottom: 20px; align-self: end">
     </form>
 {% endblock content %}
