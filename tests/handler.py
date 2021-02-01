@@ -59,7 +59,7 @@ def update_result(user, test, points):
     test_object = TestData.objects.filter(user=user, topic=topic)
 
     if len(test_object) == 0:
-        TestData.objects.create(user=user, topic=topic, attempts=1, points=points)
+        TestData.objects.create(user=user, topic=topic, attempts=1, best_result=points)
     else:
         test_object = test_object[0]
         test_object.attempts += 1
