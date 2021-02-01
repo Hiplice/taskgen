@@ -1,9 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .generate import TestGenerator
 from . import handler
 from django.http import HttpResponse
+
+
+@login_required(login_url='/account/auth/', redirect_field_name='')
+def redirect_from_root(request):
+    return redirect(to='/tests/')
 
 
 @login_required(login_url='/account/auth/', redirect_field_name='')

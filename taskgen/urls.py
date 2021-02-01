@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from tests import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tests/', include('tests.urls')),
     path('account/', include('account.urls')),
-    path('analysis/', include('analysis.urls')),
+    path('', views.redirect_from_root, name='redirect from root')
 ]
