@@ -4,58 +4,24 @@
 {% block content %}
     <h2>Список тестов</h2>
 
-    <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Accordion Item #2
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-</div>
-
-    <div class="card"><ul class="list-group list-group-flush">
-    {% for topic in data %}
-        <a href="{{ topic.id }}">
-        <li class="list-group-item list-group-item-action">
-            <div style="display: flex; flex-direction: row; justify-content: space-between">
-                <div>
-                    {{ topic.id }}. {{ topic.name}}
-                </div>
-                <div style="color: #9c9">
-                    100 / 100
+    <div class="container-fliud">
+    <div class="accordion" id="testList">
+        {% for topic in data %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="TopicHeading{{ topic.id }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{ topic.id }}" aria-expanded="false" aria-controls="Collapse{{ topic.id }}">
+                        {{ topic.id }} / {{ topic.name }}
+                        </button>
+                </h2>
+                <div id="Collapse{{ topic.id }}" class="accordion-collapse collapse" aria-labelledby="TopicHeading{{ topic.id }}" data-bs-parent="#testList">
+                    <div class="accordion-body">
+                        <p><strong>Лучший результат:</strong> 10/10</p>
+                        <p><strong>Использовано попыток:</strong> 10/10</p>
+                        <a class="btn btn-primary" role="button" href="{{ topic.id }}">Начать прохождение</a>
+                    </div>
                 </div>
             </div>
-        </li></a>
-    {% endfor %}
-    </ul></div>
+        {% endfor %}
+    </div>
+    </div>
 {% endblock content %}

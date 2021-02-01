@@ -13,4 +13,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
 </head>
+
+<body>
+    <div class="main-container">
+        <div class="menu-container">
+            <a class="menu-element" href="/tests">
+                <div class="menu-image"><img src="{% static 'img/notes.svg' %}"></div>
+                <div class="menu-text">Тесты</div>
+            </a>
+
+            <a class="menu-element" href="/account">
+                <div class="menu-image"><img src="{% static 'img/settings.svg' %}"></div>
+                <div class="menu-text">Настройки</div>
+            </a>
+        </div>
+        <div class="content-container">{% block content %}{% endblock content %}</div>
+    </div>
+</body>
 </html>

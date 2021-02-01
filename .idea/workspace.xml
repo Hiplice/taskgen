@@ -6,7 +6,7 @@
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tests/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tests/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/tests.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/static/css/recycler.webflow.c21d79969.css" beforeDir="false" afterPath="$PROJECT_DIR$/tests/static/css/recycler.webflow.c21d79969.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/tests/static/css/base.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +43,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="CSS File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -131,7 +131,7 @@
       <workItem from="1598029198034" duration="7000" />
       <workItem from="1598109303427" duration="2924000" />
       <workItem from="1598166938285" duration="433000" />
-      <workItem from="1612170532384" duration="13730000" />
+      <workItem from="1612170532384" duration="19588000" />
     </task>
     <servers />
   </component>
