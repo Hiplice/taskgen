@@ -18,7 +18,6 @@ def create_test(generator, request):
     user = request.user
     test = Test.objects.create(user=user,
                                topic=topic,
-                               difficulty=generator.difficulty,
                                questions=json.dumps(questions),
                                answers=json.dumps(answers),
                                correct_answers=json.dumps(correct_answers))
@@ -91,6 +90,19 @@ def get_topic_information(request):
             topic_info.append(TopicInformation(topic.name, topic.id, 0, 0))
 
     return topic_info
+
+
+def add_test(request):
+    Pattern.objects.create(
+        topic=Topic.objects.get(id=request.POST['topic']),
+        question=request.POST['question'],
+        expression=request.POST['expression'],
+        generate_from=request.POST['generate_from'],
+        generate_to=request.POST['generate_to'],
+        answer_from=request.POST['answer_from'],
+        answer_to=request.POST['answer_to']
+    )
+
 
 
 

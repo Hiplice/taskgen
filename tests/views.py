@@ -24,7 +24,7 @@ def start_test(request, test_number):
         accuracy = handler.compare_result(request)
         result = HttpResponse(accuracy)
     else:
-        test = TestGenerator(test_number, 10, 4, 0)
+        test = TestGenerator(test_number, 10, 4)
         handler.create_test(test, request)
         result = render(request, 'tests/questions.html', {'data': test})
 
@@ -33,4 +33,10 @@ def start_test(request, test_number):
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
 def add_test(request):
-    return render(request, 'tests/addtest.html')
+    if request.method == 'POST':
+        handler.add_test(request)
+        result = render(request, 'tests/addtest.html')
+    else:
+        result = render(request, 'tests/addtest.html', {'subjects': Subject.objects.all(), 'topics': Topic.objects.all()})
+
+    return result

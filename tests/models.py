@@ -13,15 +13,18 @@ class Topic(models.Model):
 
 
 class Pattern(models.Model):
-    topic_number = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    difficulty = models.PositiveIntegerField()
-    text = models.TextField()
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    question = models.CharField(max_length=128)
+    expression = models.TextField()
+    generate_from = models.IntegerField()
+    generate_to = models.IntegerField()
+    answer_from = models.IntegerField()
+    answer_to = models.IntegerField()
 
 
 class Test(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    difficulty = models.PositiveIntegerField()
     questions = models.TextField()
     answers = models.TextField()
     correct_answers = models.TextField()

@@ -1,9 +1,9 @@
 from patterncomputer import compute_pattern
 from random import randint
-from .models import Pattern
+from .models import Pattern, Topic
 
 
-def generate_answers(correct_answer, n_answers):
+def generate_answers(correct_answer, n_answers, answers_from, answers_to):
     answers = [0]*n_answers
     correct_position = randint(0, n_answers - 1)
 
@@ -11,7 +11,7 @@ def generate_answers(correct_answer, n_answers):
         if i == correct_position:
             answers[i] = correct_answer
         else:
-            answers[i] = randint(-50, 50)
+            answers[i] = randint(answers_from, answers_to)
 
     return answers
 
@@ -27,17 +27,16 @@ class OneQuestion:
 
 class TestGenerator:
 
-    def __init__(self, topic_number, n_questions, n_answers, difficulty):
+    def __init__(self, topic_number, n_questions, n_answers):
         self.topic_number = topic_number
         self.n_questions = n_questions
         self.n_answers = n_answers
-        self.difficulty = difficulty
-        self.questions = [0]*n_questions
+        self.questions = [0] * n_questions
 
         self.generate_questions()
 
     def generate_questions(self):
-        all_patterns = Pattern.objects.filter(topic_number=self.topic_number)
+        all_patterns = Pattern.objects.filter(topic=self.topic_number)
         total_patterns = len(all_patterns)
         used_patterns = set()
 
@@ -47,7 +46,7 @@ class TestGenerator:
             while generated_number in used_patterns:
                 generated_number = randint(0, total_patterns - 1)
 
-            question, correct_answer = compute_pattern(all_patterns[generated_number].text, '$')
-            answers = generate_answers(correct_answer, self.n_answers)
+            question, correct_answer = compute_pattern(all_patterns[generated_number].expression, '$', all_patterns[generated_number].generate_from, all_patterns[generated_number].generate_to)
+            answers = generate_answers(correct_answer, self.n_answers, all_patterns[generated_number].answer_from, all_patterns[generated_number].answer_to)
 
             self.questions[i] = OneQuestion(question, answers, correct_answer, i + 1)
