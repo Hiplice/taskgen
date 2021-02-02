@@ -46,3 +46,6 @@ def register(request):
         form = RegisterForm()
     return render(request, 'account/register.html', {'form': form})
 
+
+def settings(request):
+    return HttpResponse(request.user.first_name)
