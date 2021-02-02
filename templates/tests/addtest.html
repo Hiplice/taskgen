@@ -1,6 +1,7 @@
 {% extends "tests/base.html" %}
 {% block title %}Добавить шаблон{% endblock title %}
 {% block header %}Добавить шаблон{{ data.topic_number }}{% endblock header %}
+{% load static %}
 
 {%  block content %}
     <h2 style="margin-bottom: 25px">Добавлить шаблон</h2>
@@ -63,3 +64,10 @@
         <input class="btn btn-primary" type="submit" value="Добавить">
     </form>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'js/enableTabInForm.js' %}"></script>
+    <script>
+        tabInsertInit(document.getElementById('expression'))
+    </script>
+{% endblock scripts %}
