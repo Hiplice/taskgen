@@ -39,5 +39,10 @@ class TestData(models.Model):
     best_result = models.PositiveSmallIntegerField()
 
 
+class SubjectPermission(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+
+
 def __str__(self):
     return self.title

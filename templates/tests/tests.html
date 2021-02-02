@@ -4,26 +4,29 @@
 {% block content %}
     <h2>Список тестов</h2>
 
-    <div class="container-fliud">
-    <div class="accordion" id="testList">
-        {% for topic in data %}
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="TopicHeading{{ topic.topic_id }}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{ topic.topic_id }}" aria-expanded="false" aria-controls="Collapse{{ topic.topic_id }}">
-                        {{ topic.name }}
-                        </button>
-                </h2>
-                <div id="Collapse{{ topic.topic_id }}" class="accordion-collapse collapse" aria-labelledby="TopicHeading{{ topic.topic_id }}" data-bs-parent="#testList">
-                    <div class="accordion-body">
-                        <p><strong>Лучший результат:</strong> {{ topic.points }}/10</p>
-                        <p><strong>Использовано попыток:</strong> {{ topic.attempts }}/3</p>
-                        {% if topic.attempts < 3 %}
-                        <a class="btn btn-primary" role="button" href="{{ topic.topic_id }}">Начать прохождение</a>
-                        {% endif %}
+    {% for subject in data %}
+        <h2>{{ subject.name }}</h2>
+        <div class="container-fliud">
+        <div class="accordion" id="testList">
+            {% for topic in subject.topics %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="TopicHeading{{ topic.topic_id }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{ topic.topic_id }}" aria-expanded="false" aria-controls="Collapse{{ topic.topic_id }}">
+                            {{ topic.name }}
+                            </button>
+                    </h2>
+                    <div id="Collapse{{ topic.topic_id }}" class="accordion-collapse collapse" aria-labelledby="TopicHeading{{ topic.topic_id }}" data-bs-parent="#testList">
+                        <div class="accordion-body">
+                            <p><strong>Лучший результат:</strong> {{ topic.points }}/10</p>
+                            <p><strong>Использовано попыток:</strong> {{ topic.attempts }}/3</p>
+                            {% if topic.attempts < 3 %}
+                            <a class="btn btn-primary" role="button" href="{{ topic.topic_id }}">Начать прохождение</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
+            {% endfor %}
             </div>
-        {% endfor %}
-    </div>
-    </div>
+        </div>
+    {% endfor %}
 {% endblock content %}

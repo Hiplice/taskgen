@@ -66,6 +66,14 @@ def update_result(user, test, points):
         test_object.save(update_fields=['attempts', 'best_result'])
 
 
+class Subject:
+
+    def __init__(self, name, subject_id, topics):
+        self.topics = topics
+        self.subject_id = subject_id
+        self.name = name
+
+
 class TopicInformation:
 
     def __init__(self, name, topic_id, attempts, points):
@@ -75,21 +83,26 @@ class TopicInformation:
         self.points = points
 
 
-def get_topic_information(request):
-    topics = Topic.objects.all()
+def get_subject_information(request):
     user = request.user
-    topic_info = []
+    subjects = SubjectPermission.objects.filter(user=user)
+    subject_info = []
 
-    for topic in topics:
-        test_data = TestData.objects.filter(user=user, topic=topic)
+    for permission in subjects:
+        topics = Topic.objects.filter(subject=permission.subject)
+        topic_info = []
 
-        if len(test_data) > 0:
-            test_data = test_data[0]
-            topic_info.append(TopicInformation(topic.name, topic.id, test_data.attempts, test_data.best_result))
-        else:
-            topic_info.append(TopicInformation(topic.name, topic.id, 0, 0))
+        for topic in topics:
+            test_data = TestData.objects.filter(user=user, topic=topic)
 
-    return topic_info
+            if len(test_data) > 0:
+                test_data = test_data[0]
+                topic_info.append(TopicInformation(topic.name, topic.id, test_data.attempts, test_data.best_result))
+            else:
+                topic_info.append(TopicInformation(topic.name, topic.id, 0, 0))
+        subject_info.append(Subject(permission.subject.name, permission.subject.id, topic_info))
+
+    return subject_info
 
 
 def replace_special_symbols(string):
