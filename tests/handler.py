@@ -92,11 +92,18 @@ def get_topic_information(request):
     return topic_info
 
 
+def replace_special_symbols(string):
+    while string.find('\\') != -1:
+        string = string.replace('\\n', '\n').replace('\\t', '\t')
+
+    return string
+
+
 def add_test(request):
     Pattern.objects.create(
         topic=Topic.objects.get(id=request.POST['topic']),
         question=request.POST['question'],
-        expression=request.POST['expression'],
+        expression=replace_special_symbols(request.POST['expression']),
         generate_from=request.POST['generate_from'],
         generate_to=request.POST['generate_to'],
         answer_from=request.POST['answer_from'],

@@ -4,13 +4,7 @@
     <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tests/addtest.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/addtest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/generate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/patterncomputer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/patterncomputer/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/patterncomputer/execution.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/patterncomputer/execution.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +131,8 @@
       <workItem from="1598166938285" duration="433000" />
       <workItem from="1612170532384" duration="19781000" />
       <workItem from="1612194611146" duration="5984000" />
-      <workItem from="1612203919977" duration="8656000" />
+      <workItem from="1612203919977" duration="8931000" />
+      <workItem from="1612255330488" duration="1397000" />
     </task>
     <servers />
   </component>
