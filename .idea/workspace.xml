@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tests/addtest.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/addtest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tests/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tests/questions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/questions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tests/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/tests.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +65,9 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Own\Apps\taskgen\templates" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Own\Apps\taskgen\static" />
     </key>
@@ -134,7 +140,11 @@
       <workItem from="1612170532384" duration="19781000" />
       <workItem from="1612194611146" duration="5984000" />
       <workItem from="1612203919977" duration="8931000" />
-      <workItem from="1612255330488" duration="7786000" />
+      <workItem from="1612255330488" duration="8340000" />
+      <workItem from="1612343278491" duration="1063000" />
+      <workItem from="1612350526306" duration="306000" />
+      <workItem from="1612435920396" duration="142000" />
+      <workItem from="1612466137046" duration="1332000" />
     </task>
     <servers />
   </component>
