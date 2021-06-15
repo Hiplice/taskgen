@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import *
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
@@ -22,7 +22,7 @@ def auth(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Авторизация прошла успешно.')
+                    return redirect(to='/')
                 else:
                     return HttpResponse('Аккаунт был удалён.')
             else:
@@ -41,7 +41,7 @@ def register(request):
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
 
-        return HttpResponse('Регистрация прошла успешно.')
+        return redirect(to='/')
     else:
         form = RegisterForm()
     return render(request, 'account/register.html', {'form': form})
