@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tests/addtest.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/addtest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tests/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/tests.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/generate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/patterncomputer/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/patterncomputer/execution.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskgen/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskgen/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,11 +60,12 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Own\Apps\taskgen" />
+      <recent name="D:\Own\Apps\taskgen\static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Own\Apps\taskgen\templates" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Own\Apps\taskgen\static" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -155,7 +149,7 @@
       <workItem from="1616664243779" duration="96000" />
       <workItem from="1618306052003" duration="324000" />
       <workItem from="1618502836202" duration="193000" />
-      <workItem from="1623771483248" duration="738000" />
+      <workItem from="1623771483248" duration="1254000" />
     </task>
     <servers />
   </component>
