@@ -1,1 +1,1 @@
-web: gunicorn taskgen.wsgi --log-file -
+web: python manage.py runserver
