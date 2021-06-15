@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/taskgen/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskgen/settings.py" afterDir="false" />
+    </list>
+>>>>>>> parent of 5fd7c78 (upd)
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +126,11 @@
       <workItem from="1616664243779" duration="96000" />
       <workItem from="1618306052003" duration="324000" />
       <workItem from="1618502836202" duration="193000" />
+<<<<<<< HEAD
       <workItem from="1623771483248" duration="4125000" />
+=======
+      <workItem from="1623771483248" duration="2577000" />
+>>>>>>> parent of 5fd7c78 (upd)
     </task>
     <servers />
   </component>
