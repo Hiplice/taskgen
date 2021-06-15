@@ -19,6 +19,13 @@ def show_tests(request):
 
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
+def show_results(request):
+    tests_information = handler.get_subject_information(request)
+
+    return render(request, 'tests/results.html', {'data': tests_information})
+
+
+@login_required(login_url='/account/auth/', redirect_field_name='')
 def start_test(request, test_number):
     if request.method == 'POST':
         accuracy = handler.compare_result(request)

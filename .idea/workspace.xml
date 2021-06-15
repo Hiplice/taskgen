@@ -3,12 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="f664ef38-8ee5-4d34-8782-c4e1875bf47c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tests/addtest.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/addtest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tests/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tests/questions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/questions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tests/tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tests/tests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/generate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/patterncomputer/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/patterncomputer/execution.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +63,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -145,6 +147,15 @@
       <workItem from="1612350526306" duration="306000" />
       <workItem from="1612435920396" duration="142000" />
       <workItem from="1612466137046" duration="1332000" />
+      <workItem from="1612510857114" duration="519000" />
+      <workItem from="1615908848632" duration="1851000" />
+      <workItem from="1615999283552" duration="366000" />
+      <workItem from="1616663211218" duration="114000" />
+      <workItem from="1616663528390" duration="272000" />
+      <workItem from="1616664243779" duration="96000" />
+      <workItem from="1618306052003" duration="324000" />
+      <workItem from="1618502836202" duration="193000" />
+      <workItem from="1623771483248" duration="738000" />
     </task>
     <servers />
   </component>
@@ -163,16 +174,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests/generate.py</url>
-          <line>48</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
