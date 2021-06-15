@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('tests/', include('tests.urls')),
     path('account/', include('account.urls')),
+    path('results/', include('results.urls')),
     path('', views.redirect_from_root, name='redirect from root')
 ]
