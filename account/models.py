@@ -1,8 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, Group
+from django.contrib.auth import models as auth_models
 
 
-class User(AbstractUser):
+class StudyGroup(models.Model):
+    name = models.CharField(max_length=20)
+
+
+class User(auth_models.AbstractUser):
     """
     username = models.CharField(
         _('username'),
@@ -33,6 +37,7 @@ class User(AbstractUser):
     """
 
     active_test = models.PositiveIntegerField(blank=True, null=True)
+    study_group = models.ForeignKey(StudyGroup, on_delete=models.SET_NULL, null=True)
 
 
 def __str__(self):

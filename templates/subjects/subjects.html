@@ -2,24 +2,21 @@
 {% block title %}Список предметов{% endblock title %}
 
 {% block content %}
-    <h2>Список предметов</h2>
+    <h2 style="margin-bottom: 30px">Предметы</h2>
 
-    <div class="container-fliud">
-        <div class="accordion" id="testList">
-            {% for subject in data %}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="TopicHeading{{ subject.id }}">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{ subject.id }}" aria-expanded="false" aria-controls="Collapse{{ subject.id }}">
-                            {{ subject.name }}
-                            </button>
-                    </h2>
-                    <div id="Collapse{{ subject.id }}" class="accordion-collapse collapse" aria-labelledby="TopicHeading{{ subject.id }}" data-bs-parent="#testList">
-                        <div class="accordion-body">
-                            <a class="btn btn-primary" role="button" href="{{ subject.id }}">Изменить темы</a>
-                        </div>
-                    </div>
+    <ul class="list-group">
+    {% for subject in data %}
+        <li class="list-group-item">
+            <div class="row justify-content-between">
+                <div class="col-auto">{{ subject.name }}</div>
+                <div class="col-auto">
+                    <a href="edit/?subject={{ subject.id }}"><button type="button" class="btn btn-outline-secondary btn-sm">Изменить</button></a>
+                    <a href="topics/?subject={{ subject.id }}"><button type="button" class="btn btn-outline-secondary btn-sm">Темы</button></a>
+                    <a href="results/?subject={{ subject.id }}"><button type="button" class="btn btn-outline-success btn-sm">Результаты</button></a>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="add/"><button type="button" class="btn btn-primary" style="margin-top: 20px">Добавить</button></a>
 {% endblock content %}

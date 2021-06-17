@@ -22,7 +22,7 @@ def show_tests(request):
 def show_results(request):
     tests_information = handler.get_subject_information(request)
 
-    return render(request, 'tests/results.html', {'data': tests_information})
+    return render(request, 'tests/../templates/subjects/results.html', {'data': tests_information})
 
 
 @login_required(login_url='/account/auth/', redirect_field_name='')

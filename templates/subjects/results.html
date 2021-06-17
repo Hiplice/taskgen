@@ -1,0 +1,45 @@
+{% extends "tests/../base.html" %}
+{% block title %}Результаты тестов{% endblock title %}
+
+{% block content %}
+    <h2>Результаты тестов</h2>
+        <h2>{{ subject.name }}</h2>
+        <div class="container-fliud">
+        <div class="row justify-content-end">
+            <div style="margin-bottom: 10px" class="col-3"><input id='searchInput' class="form-control g-3" type="text" placeholder="Поиск" aria-label="default input example"></div>
+            <div class="col-auto"><button id="searchButton" type="button" class="btn btn-primary">Найти</button></div>
+        </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Имя</th>
+                  <th scope="col">Фамилия</th>
+                  <th scope="col">Группа</th>
+                    {% for topic in topics %}
+                    <th scope="col">{{ topic }}</th>
+                    {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+              {% for item in data %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.surname }}</td>
+                    <td>{{ item.group }}</td>
+                    {% for result in item.results %}
+                        <td>{{ result }}</td>
+                    {% endfor %}
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        document.getElementById('searchButton').onclick = function () {
+            document.location = '/subjects/results/?subject={{ subject.id }}&search=' + document.getElementById('searchInput').value
+        }
+    </script>
+{% endblock %}

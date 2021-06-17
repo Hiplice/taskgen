@@ -1,0 +1,21 @@
+{% extends "tests/../base.html" %}
+{% block title %}Список тем{% endblock title %}
+
+{% block content %}
+    <h2 style="margin-bottom: 30px">Темы</h2>
+
+    <ul class="list-group">
+    {% for topic in data %}
+        <li class="list-group-item">
+            <div class="row justify-content-between">
+                <div class="col-auto">{{ topic.name }}</div>
+                <div class="col-auto">
+                    <a href="edit/?subject={{ topic.id }}"><button type="button" class="btn btn-outline-secondary btn-sm">Изменить</button></a>
+                    <a href="remove/?subject={{ topic.id }}"><button type="button" class="btn btn-outline-danger btn-sm">Удалить</button></a>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="add/"><button type="button" class="btn btn-primary" style="margin-top: 20px">Добавить</button></a>
+{% endblock content %}
