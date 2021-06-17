@@ -1,0 +1,25 @@
+{% extends "tests/../base.html" %}
+{% block title %}Список предметов{% endblock title %}
+
+{% block content %}
+    <h2>Список предметов</h2>
+
+    <div class="container-fliud">
+        <div class="accordion" id="testList">
+            {% for subject in data %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="TopicHeading{{ subject.id }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse{{ subject.id }}" aria-expanded="false" aria-controls="Collapse{{ subject.id }}">
+                            {{ subject.name }}
+                            </button>
+                    </h2>
+                    <div id="Collapse{{ subject.id }}" class="accordion-collapse collapse" aria-labelledby="TopicHeading{{ subject.id }}" data-bs-parent="#testList">
+                        <div class="accordion-body">
+                            <a class="btn btn-primary" role="button" href="{{ subject.id }}">Изменить темы</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+{% endblock content %}
