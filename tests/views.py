@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
-from .generate import TestGenerator
 from . import handler
 from django.http import HttpResponse
 
@@ -19,31 +18,9 @@ def show_tests(request):
 
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
-def show_results(request):
-    tests_information = handler.get_subject_information(request)
-
-    return render(request, 'tests/../templates/subjects/results.html', {'data': tests_information})
-
-
-@login_required(login_url='/account/auth/', redirect_field_name='')
-def start_test(request, test_number):
+def start_test(request):
     if request.method == 'POST':
-        accuracy = handler.compare_result(request)
-        result = HttpResponse(accuracy)
+        result = HttpResponse("Пока не фурычит")
     else:
-        test = TestGenerator(test_number, 10, 4)
-        handler.create_test(test, request)
-        result = render(request, 'tests/questions.html', {'data': test})
-
-    return result
-
-
-@login_required(login_url='/account/auth/', redirect_field_name='')
-def add_test(request):
-    if request.method == 'POST':
-        handler.add_test(request)
-        result = render(request, 'tests/addtest.html')
-    else:
-        result = render(request, 'tests/addtest.html', {'subjects': Subject.objects.all(), 'topics': Topic.objects.all()})
-
+        result = HttpResponse("Пока не фурычит")
     return result

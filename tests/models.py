@@ -25,10 +25,9 @@ class Pattern(models.Model):
 class Test(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    questions = models.TextField()
-    answers = models.TextField()
-    correct_answers = models.TextField()
-    chosen_answers = models.TextField()
+    last_question = models.PositiveSmallIntegerField(default=0)
+    total_questions = models.PositiveSmallIntegerField(default=10)
+    points = models.PositiveSmallIntegerField(default=0)
     start_time = models.TimeField(default=timezone.now)
 
 
