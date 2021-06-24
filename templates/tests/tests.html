@@ -20,7 +20,7 @@
                             <p><strong>Лучший результат:</strong> {{ topic.points }}/10</p>
                             <p><strong>Использовано попыток:</strong> {{ topic.attempts }}/3</p>
                             {% if topic.attempts < 3 %}
-                            <a class="btn btn-primary" role="button" href="{{ topic.topic_id }}">Начать прохождение</a>
+                            <a class="btn btn-primary" role="button" href="/tests/pass/?topic={{ topic.topic_id }}">Начать прохождение</a>
                             {% endif %}
                         </div>
                     </div>

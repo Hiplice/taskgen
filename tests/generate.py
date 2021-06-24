@@ -1,4 +1,5 @@
 from random import randint
+from .models import Pattern
 
 
 def replace_sign(pattern, pattern_sign, generate_from, generate_to):
@@ -44,6 +45,30 @@ def generate_answers(correct_answer, n_answers, answers_from, answers_to):
         if i == correct_position:
             answers[i] = correct_answer
         else:
-            answers[i] = randint(answers_from, answers_to)
+            current_answer = randint(answers_from, answers_to)
+            while current_answer in answers:
+                current_answer = randint(answers_from, answers_to)
+            answers[i] = current_answer
 
     return answers
+
+
+class Question:
+    def __init__(self, heading, body, answers, correct_answer):
+        self.heading = heading
+        self.body = body
+        self.answers = answers
+        self.correct_answer = correct_answer
+
+
+def generate_question(topic, difficulty):
+    available_patterns = Pattern.objects.filter(topic=topic, topic__pattern__difficult=difficulty)
+    chosen_pattern = available_patterns[randint(0, len(available_patterns) - 1)]
+    text, correct_ans = compute_pattern(chosen_pattern.expression, "$", chosen_pattern.generate_from, chosen_pattern.generate_to)
+
+    return chosen_pattern, Question(
+        heading=chosen_pattern.heading,
+        body=text,
+        correct_answer=correct_ans,
+        answers=generate_answers(correct_ans, 4, chosen_pattern.answer_from, chosen_pattern.answer_to)
+    )

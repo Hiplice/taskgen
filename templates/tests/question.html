@@ -1,42 +1,27 @@
 {% extends "tests/../base.html" %}
-{% block title %}Вопрос №1{{ data.topic_number }}{% endblock title %}
+{% block title %}Вопрос №{{ test.question_count }}{% endblock title %}
 
 {% block content %}
     <div>
-        <h2 style="margin-bottom: 30px">Вопрос 1 из 10</h2>
+        <h2 style="margin-bottom: 30px">Вопрос {{ test.question_count }} из {{ test.total_questions }}</h2>
         <div class="progress">
-            <div class="progress-bar" style="width: 10%" role="progressbar">1</div>
+            <div class="progress-bar" style="width: {{ progress }}%" role="progressbar">{{ test.question_count }}</div>
         </div>
     </div>
 
     <div>
-        <h4 style="margin: 10% 0px 30px 0px">Что будет выведено в результате выполнения кода?</h4>
-        <p style="margin-bottom: 30px"><samp>Добрый день добрый вечер я диспетчер</samp></p>
-        <form method="post">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                    1
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    2
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                    3
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                <label class="form-check-label" for="flexRadioDefault4">
-                    4
-                </label>
-            </div>
+        <h4 style="margin: 10% 0px 30px 0px">{{ question.heading }}</h4>
+        <p style="margin-bottom: 30px"><samp>{{ question.body }}</samp></p>
+        <form method="post" action="/tests/pass/">
+        {% csrf_token %}
+            {% for answer in question.answers %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer" id="answer_{{ answer }}" value="{{ answer }}">
+                    <label class="form-check-label" for="answer_{{ answer }}">
+                        {{ answer }}
+                    </label>
+                </div>
+            {% endfor %}
             <button type="submit" style="margin-top: 20px" class="btn btn-primary">Далее</button>
         </form>
     </div>
