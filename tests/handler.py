@@ -1,6 +1,17 @@
 from .models import *
 
 
+class Question:
+    def __init__(self, text, answers, correct_answer):
+        self.text = text
+        self.answers = answers
+        self.correct_answer = correct_answer
+
+
+def generate_question(topic, difficulty):
+    available_patterns = Pattern.objects.filter(topic=topic)
+
+
 def update_result(user, test, points):
     topic = test.topic
     test_object = TestData.objects.filter(user=user, topic=topic)

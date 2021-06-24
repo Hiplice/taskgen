@@ -14,7 +14,9 @@ class Topic(models.Model):
 
 class Pattern(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    question = models.CharField(max_length=128)
+    difficult = models.BooleanField(default=False)
+    heading = models.CharField(max_length=128)
+    question_body = models.TextField(null=True)
     expression = models.TextField()
     generate_from = models.IntegerField()
     generate_to = models.IntegerField()
@@ -22,10 +24,16 @@ class Pattern(models.Model):
     answer_to = models.IntegerField()
 
 
+class Question(models.Model):
+    parent_pattern = models.ForeignKey(Pattern, on_delete=models.SET_NULL, null=True)
+    correct_answer = models.IntegerField()
+
+
 class Test(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    last_question = models.PositiveSmallIntegerField(default=0)
+    streak = models.PositiveSmallIntegerField(default=0)
+    last_question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True)
     total_questions = models.PositiveSmallIntegerField(default=10)
     points = models.PositiveSmallIntegerField(default=0)
     start_time = models.TimeField(default=timezone.now)

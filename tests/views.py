@@ -22,5 +22,7 @@ def start_test(request):
     if request.method == 'POST':
         result = HttpResponse("Пока не фурычит")
     else:
-        result = HttpResponse("Пока не фурычит")
+        topic = request.GET.get("topic")
+
+        result = render(request, 'tests/question.html')
     return result

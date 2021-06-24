@@ -47,12 +47,3 @@ def generate_answers(correct_answer, n_answers, answers_from, answers_to):
             answers[i] = randint(answers_from, answers_to)
 
     return answers
-
-
-class OneQuestion:
-
-    def __init__(self, text, answers, correct_answer, number):
-        self.text = text
-        self.answers = answers
-        self.correct_answer = correct_answer
-        self.number = number
