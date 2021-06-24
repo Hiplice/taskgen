@@ -3,14 +3,19 @@
 
 {% block content %}
     <div>
-        <h2 style="margin-bottom: 30px">Вопрос {{ test.question_count }} из {{ test.total_questions }}</h2>
+        <h2 style="margin-bottom: 10px">Вопрос {{ test.question_count }} из {{ test.total_questions }}</h2>
+        {% if question.difficult %}
+            <span style="margin-bottom: 10px" class="badge rounded-pill bg-danger">2 балла</span>
+        {% else %}
+            <span style="margin-bottom: 30px" class="badge rounded-pill bg-secondary">1 балл</span>
+        {% endif %}
         <div class="progress">
             <div class="progress-bar" style="width: {{ progress }}%" role="progressbar"></div>
         </div>
     </div>
 
     <div>
-        <h4 style="margin: 10% 0px 30px 0px">{{ question.heading }}</h4>
+        <h4 style="margin: 50px 0px 30px 0px">{{ question.heading }}</h4>
         <p style="margin-bottom: 30px"><pre><code>{{ question.body }}</code></pre></p>
         <form method="post" action="/tests/pass/">
         {% csrf_token %}
