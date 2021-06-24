@@ -4,8 +4,8 @@
 {% block content %}
     <div>
         <h2 style="margin-bottom: 10px">Вопрос {{ test.question_count }} из {{ test.total_questions }}</h2>
-        {% if question.difficult %}
-            <span style="margin-bottom: 10px" class="badge rounded-pill bg-danger">2 балла</span>
+        {% if question.difficulty %}
+            <span style="margin-bottom: 30px" class="badge rounded-pill bg-danger">2 балла</span>
         {% else %}
             <span style="margin-bottom: 30px" class="badge rounded-pill bg-secondary">1 балл</span>
         {% endif %}
@@ -21,7 +21,7 @@
         {% csrf_token %}
             {% for answer in question.answers %}
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="answer" id="answer_{{ answer }}" value="{{ answer }}">
+                    <input class="form-check-input" type="radio" name="answer" id="answer_{{ answer }}" value="{{ answer }}" required>
                     <label class="form-check-label" for="answer_{{ answer }}">
                         {{ answer }}
                     </label>
@@ -30,4 +30,44 @@
             <button type="submit" style="margin-top: 20px" class="btn btn-primary">Далее</button>
         </form>
     </div>
+
+    <div class="modal fade" id="questionResult" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Результат</h5>
+                </div>
+                <div class="modal-body">
+                    Верный ответ
+                </div>
+                <div class="modal-footer">
+                    <a href="/tests/pass/"><button type="button" class="btn btn-success">Следующий вопрос</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
+
+{% block scripts %}
+    <!-- Подключаю jquery для отправки формы по ajax -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $('form').submit(function (e) {
+            let form = $(this);
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize()
+            }).done(function (response) {
+                if (response === 'False') {
+                    $('#questionResult .modal-body').text("Неправильный ответ");
+                    $('#questionResult button').attr('class', 'btn btn-danger')
+                }
+                $('#questionResult').modal('toggle');
+            }).fail(function (){
+                alert('fail');
+            });
+            e.preventDefault();
+        });
+    </script>
+{% endblock scripts %}

@@ -20,20 +20,21 @@ def show_tests(request):
 @login_required(login_url='/account/auth/', redirect_field_name='')
 def start_test(request):
     if request.method == 'POST':
-        handler.check_answer(request.user, request.POST['answer'])
+        answer = handler.check_answer(request.user, request.POST['answer'])
         test = Test.objects.get(id=request.user.active_test)
         if test.question_count < test.total_questions:
-            test, question = handler.new_question(test)
-            result = render(request, 'tests/question.html', {'question': question, 'test': test, "progress": 100 * test.question_count / test.total_questions})
+            handler.create_question(test)
         else:
             handler.update_result(request.user)
-            result = redirect(to='/tests/')
+        result = HttpResponse(answer)
     elif request.user.active_test:
         test, question = handler.get_test_data(request.user.active_test)
         result = render(request, 'tests/question.html', {'question': question, 'test': test, "progress": 100 * test.question_count / test.total_questions})
-    else:
+    elif request.GET.get('topic'):
         topic = request.GET.get("topic")
         question, test = handler.create_test(request.user, topic)
         result = render(request, 'tests/question.html', {'question': question, 'test': test, "progress": 100 * test.question_count / test.total_questions})
+    else:
+        result = redirect('/tests/')
 
     return result

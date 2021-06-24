@@ -8,19 +8,20 @@ def check_answer(user, answer):
 
     # Добавляем очки за правильный ответ
     if answer == str(test.last_question.correct_answer):
-        test.points += 2 if test.last_question.parent_pattern.difficult else 1
+        test.points += 2 if test.last_question.difficulty else 1
         test.streak += 1
     else:
         test.streak = 0
     test.save()
+    return test.streak > 0
 
 
-def new_question(test):
+def create_question(test):
     pattern, question = generate.generate_question(topic=test.topic_id, difficulty=test.streak > 2)
 
     # Создаю новый Question
     db_question = Question(
-        parent_pattern=pattern,
+        difficulty=pattern.difficult,
         correct_answer=question.correct_answer,
         heading=question.heading,
         body=question.body,
@@ -31,8 +32,6 @@ def new_question(test):
     test.last_question = db_question
     test.question_count += 1
     test.save()
-
-    return test, question
 
 
 def get_test_data(test_id):
@@ -47,7 +46,7 @@ def create_test(user, topic):
 
     # Создаём объект вопроса в бд
     db_question = Question(
-        parent_pattern=pattern,
+        difficulty=pattern.difficult,
         correct_answer=question.correct_answer,
         heading=question.heading,
         body=question.body,
@@ -56,12 +55,13 @@ def create_test(user, topic):
     db_question.save()
 
     # Создаём объект теста в бд
+    db_question.answers = loads(db_question.answers)
     test = Test(user=user, topic_id=topic, last_question_id=db_question.id)
     test.save()
     user.active_test = test.id
     user.save()
 
-    return question, test
+    return db_question, test
 
 
 def update_result(user):

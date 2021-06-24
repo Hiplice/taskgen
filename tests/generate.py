@@ -62,7 +62,7 @@ class Question:
 
 
 def generate_question(topic, difficulty):
-    available_patterns = Pattern.objects.filter(topic=topic, topic__pattern__difficult=difficulty)
+    available_patterns = Pattern.objects.filter(topic=topic, difficult=difficulty)
     chosen_pattern = available_patterns[randint(0, len(available_patterns) - 1)]
     text, correct_ans = compute_pattern(chosen_pattern.expression, "$", chosen_pattern.generate_from, chosen_pattern.generate_to)
 

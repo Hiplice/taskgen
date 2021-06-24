@@ -25,7 +25,7 @@ class Pattern(models.Model):
 
 
 class Question(models.Model):
-    parent_pattern = models.ForeignKey(Pattern, on_delete=models.SET_NULL, null=True)
+    difficulty = models.BooleanField(default=False)
     correct_answer = models.IntegerField()
     heading = models.CharField(max_length=128)
     body = models.TextField()
