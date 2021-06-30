@@ -8,3 +8,5 @@ admin.site.register(Test)
 admin.site.register(Question)
 admin.site.register(TestData)
 admin.site.register(SubjectPermission)
+
+какая-то надпись
