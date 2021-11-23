@@ -32,6 +32,10 @@
                     <td>{{ item.points }}</td>
                 </tr>
               {% endfor %}
+        <td colspan="2">Итого</td>
+        {% for count in fc %}
+            <td>{{ count }}</td>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}

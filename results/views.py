@@ -44,10 +44,20 @@ def show_res(request):
     for test_id in tests:
         questions_data.append(QuestionsData.objects.filter(test=test_id))
 
+    final_count = []
+    for i in total_questions:
+        summa = 0
+        for test_id in tests:
+            temp = QuestionsData.objects.filter(test_id=test_id.id)
+            summa += temp.get(counter=i).point
+        final_count.append(summa)
+
+    final_count.append(sum(final_count))
     return render(request, 'subjects/res.html', {'topic': topic, 'data': questions_data,
                                                  'tests': tests,
                                                  'tq': total_questions,
-                                                 'tqc': len(total_questions)})
+                                                 'tqc': len(total_questions),
+                                                 'fc': final_count})
 
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
