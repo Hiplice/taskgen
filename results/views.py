@@ -36,8 +36,7 @@ def show_res(request):
     topic = Topic.objects.get(id=topic_id)
     id_base[1] = id_base[1].replace("groups=", "")
     group_id = id_base[1]
-    tests = Test.objects.filter(topic=topic, user__study_group_id=group_id)
-    tests.exclude(last_question=None)
+    tests = Test.objects.filter(topic=topic, user__study_group_id=group_id, last_question=None)
     total_questions = tests.filter().first().total_questions
     total_questions = range(1, total_questions+1)
     questions_data = []
