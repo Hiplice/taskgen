@@ -21,21 +21,25 @@ def show_groups(request):
     topic = Topic.objects.get(id=request.GET.get("topic"))
     groups = []
     user_groups = Test.objects.filter(topic_id=topic)
-    user_groups.exclude(user__study_group_id=1)
     for group in user_groups:
-        groups.append(StudyGroup.objects.get(id=group.user.study_group.id))
+        if group.user.study_group not in groups:
+            groups.append(StudyGroup.objects.get(id=group.user.study_group.id))
 
     return render(request, 'subjects/groups.html', {'data': groups, 'topic': topic})
 
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
 def show_res(request):
-    topic = Topic.objects.get(id=request.GET.get("topic"))
-    tests = Test.objects.filter(topic=topic)
+    req = request.GET.get("topic")
+    id_base = req.split("/?")
+    topic_id = id_base[0]
+    topic = Topic.objects.get(id=topic_id)
+    id_base[1] = id_base[1].replace("groups=", "")
+    group_id = id_base[1]
+    tests = Test.objects.filter(topic=topic, user__study_group_id=group_id)
+    tests.exclude(last_question=None)
     total_questions = tests.filter().first().total_questions
-    tests = Test.objects.filter(question_count=total_questions)
     total_questions = range(1, total_questions+1)
-
     questions_data = []
     for test_id in tests:
         questions_data.append(QuestionsData.objects.filter(test=test_id))
