@@ -1,37 +1,35 @@
 {% extends "tests/../base.html" %}
-{% block title %}Список предметов{% endblock title %}
+{% block title %}Группы{% endblock title %}
 
 {% block content %}
-    <h2 style="margin-bottom: 30px">Предметы</h2>
+    <h2 style="margin-bottom: 30px">Список групп по дисциплине {{ subject.name }}</h2>
 
     <ul class="list-group">
-    {% for subject in data %}
+    {% for group in data %}
         <li class="list-group-item">
             <div class="row justify-content-between">
-                <div class="col-auto">{{ subject.name }}</div>
+                <div class="col-auto">{{ group.name }}</div>
                 <div class="col-auto">
-                    <a href="topics/?subject={{ subject.id }}"><button type="button" class="btn btn-outline-secondary btn-sm">Темы</button></a>
-                    <a href="remove/?subject={{ subject.id }}"><button type="button" class="btn btn-outline-danger btn-sm">Удалить</button></a>
+                    <a href="res/?topic={{ topic.id }}"><button type="button" class="btn btn-outline-success btn-sm">Результаты</button></a>
                 </div>
             </div>
         </li>
     {% endfor %}
     </ul>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 20px">Добавить</button>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLabel">Добавить новый предмет</h5>
+         <h5 class="modal-title" id="exampleModalLabel">Добавить новую тему</h5>
            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-           <form method="post" action="add/">
+           <form method="post" action="add/?subject={{ subject.id }}">
                {% csrf_token %}
             <div class="mb-3">
-                <label for="topicName" class="col-form-label">Название предмета</label>
+                <label for="topicName" class="col-form-label">Название темы</label>
                 <input type="text" class="form-control" name="name" id="topicName">
             </div>
             </form>

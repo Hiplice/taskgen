@@ -10,8 +10,9 @@
             <div class="row justify-content-between">
                 <div class="col-auto">{{ topic.name }}</div>
                 <div class="col-auto">
+                    <a href="groups/?topic={{ topic.id }}"><button type="button" class="btn btn-outline-success btn-sm">Группы</button></a>
                     <a href="remove/?topic={{ topic.id }}"><button type="button" class="btn btn-outline-danger btn-sm">Удалить</button></a>
-                </div>
+                    </div>
             </div>
         </li>
     {% endfor %}

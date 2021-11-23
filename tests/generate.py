@@ -37,18 +37,18 @@ def compute_pattern(pattern, pattern_sign, generate_from, generate_to):
     return final_code, execution_result
 
 
-def generate_answers(correct_answer, n_answers, answers_from, answers_to):
-    answers = [0]*n_answers
-    correct_position = randint(0, n_answers - 1)
+def generate_answers(correct_answer, n_answers, answers_from, answers_to):  # Генерация ответов на вопрос
+    answers = [0] * n_answers  # Задается размерность коллекции
+    correct_position = randint(0, n_answers - 1)  # Позиция верного ответа
 
-    for i in range(n_answers):
-        if i == correct_position:
-            answers[i] = correct_answer
+    for i in range(n_answers):  # Перебор всех значений коллекции по их индексу, где i-индекс текущей позиции
+        if i == correct_position:  # Если индекс нынешнего элемента совпадает с индексом верного ответа и это значение не входит в ответы
+            answers[i] = correct_answer  # Присвоить нынешнему ответу значение верного
         else:
-            current_answer = randint(answers_from, answers_to)
-            while current_answer in answers:
-                current_answer = randint(answers_from, answers_to)
-            answers[i] = current_answer
+            current_answer = randint(answers_from, answers_to)  # Значение  ответа задать от и до
+            while (current_answer in answers) or (current_answer == correct_answer):  # Пока ответ не уникален
+                current_answer = randint(answers_from, answers_to)  # Создать новый
+            answers[i] = current_answer  # Записать ответ
 
     return answers
 
@@ -64,7 +64,8 @@ class Question:
 def generate_question(topic, difficulty):
     available_patterns = Pattern.objects.filter(topic=topic, difficult=difficulty)
     chosen_pattern = available_patterns[randint(0, len(available_patterns) - 1)]
-    text, correct_ans = compute_pattern(chosen_pattern.expression, "$", chosen_pattern.generate_from, chosen_pattern.generate_to)
+    text, correct_ans = compute_pattern(chosen_pattern.expression, "$", chosen_pattern.generate_from,
+                                        chosen_pattern.generate_to)
 
     return chosen_pattern, Question(
         heading=chosen_pattern.heading,

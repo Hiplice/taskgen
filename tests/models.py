@@ -43,6 +43,20 @@ class Test(models.Model):
     start_time = models.TimeField(default=timezone.now)
 
 
+class QuestionsData(models.Model):
+    difficulty = models.BooleanField(default=False)
+    pattern = models.ForeignKey(Pattern, default=0, on_delete=models.CASCADE)
+    correct_answer = models.IntegerField()
+    heading = models.CharField(max_length=128)
+    body = models.TextField()
+    answers = models.TextField()
+    test = models.ForeignKey(Test, default=0, on_delete=models.CASCADE)
+    user_answer = models.IntegerField(default=0)
+    counter = models.IntegerField(default=1)
+    point = models.IntegerField(default=0)
+    max_point=models.IntegerField(default=0)
+
+
 class TestData(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)

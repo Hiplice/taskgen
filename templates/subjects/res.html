@@ -1,0 +1,37 @@
+{% extends "tests/../base.html" %}
+{% block title %}Результаты тестов{% endblock title %}
+
+{% block content %}
+<h2>Результаты тестов</h2>
+        <h2>{{ topic.name }}</h2>
+    <table class="table">
+        <thead>
+        <th colspan="2">Студент</th>
+        <th colspan="{{ tqc }}">Номер вопроса</th>
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            {% for qustion_number in tq %}
+                <th scope="col">{{ qustion_number }}</th>
+            {% endfor %}
+            <th>Итого</th>
+        </tr>
+        </thead>
+        <tbody>
+              {% for item in tests %}
+                <tr>
+                    <td>{{ item.user.first_name }}</td>
+                    <td>{{ item.user.last_name }}</td>
+                    {% for questions in data %}
+                        {% for question in questions %}
+                            {% if question.test_id == item.id %}
+                                <td>{{question.point }} / {{question.max_point}}</td>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    <td>{{ item.points }}</td>
+                </tr>
+              {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

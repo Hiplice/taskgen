@@ -1,24 +1,43 @@
 from .models import *
 from . import generate
 from json import dumps, loads
+global_pattern = Pattern.objects.get(id=6)
 
 
 def check_answer(user, answer):
     test = Test.objects.get(id=user.active_test)
-
+    point = 0
+    global global_pattern
     # Добавляем очки за правильный ответ
     if answer == str(test.last_question.correct_answer):
         test.points += 2 if test.last_question.difficulty else 1
+        point += 2 if test.last_question.difficulty else 1
         test.streak += 1
     else:
         test.streak = 0
     test.save()
+    db_questions_data = QuestionsData(
+        difficulty=test.last_question.difficulty,
+        correct_answer=test.last_question.correct_answer,
+        user_answer=answer,
+        heading=test.last_question.heading,
+        body=test.last_question.body,
+        answers=dumps(test.last_question.answers),
+        pattern=global_pattern,
+        test=test,
+        counter=test.question_count,
+        point=point
+    )
+    db_questions_data.max_point=db_questions_data.difficulty+1
+    db_questions_data.save()
+    point = 0
     return test.streak > 0
 
 
 def create_question(test):
     pattern, question = generate.generate_question(topic=test.topic_id, difficulty=test.streak > 2)
-
+    global global_pattern
+    global_pattern = pattern
     # Создаю новый Question
     db_question = Question(
         difficulty=pattern.difficult,
@@ -43,7 +62,8 @@ def get_test_data(test_id):
 
 def create_test(user, topic):
     pattern, question = generate.generate_question(topic, False)
-
+    global global_pattern
+    global_pattern = pattern
     # Создаём объект вопроса в бд
     db_question = Question(
         difficulty=pattern.difficult,
@@ -71,7 +91,6 @@ def update_result(user):
     test_object = TestData.objects.filter(user=user, topic=topic)
     user.active_test = None
     user.save()
-    test.delete()
 
     if len(test_object) == 0:
         TestData.objects.create(user=user, topic=topic, attempts=1, best_result=test.points)
@@ -107,7 +126,8 @@ def get_subject_information(request):
         topic_info = []
 
         for topic in topics:
-            if len(Pattern.objects.filter(topic=topic, difficult=False)) > 0 and len(Pattern.objects.filter(topic=topic, difficult=True)) > 0:
+            if len(Pattern.objects.filter(topic=topic, difficult=False)) > 0 and len(
+                    Pattern.objects.filter(topic=topic, difficult=True)) > 0:
                 test_data = TestData.objects.filter(user=user, topic=topic)
 
                 if len(test_data) > 0:
@@ -118,6 +138,3 @@ def get_subject_information(request):
         subject_info.append(SubjectInfo(subject.name, subject.id, topic_info))
 
     return subject_info
-
-
-

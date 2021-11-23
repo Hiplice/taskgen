@@ -14,7 +14,6 @@
                 <tr>
                   <th scope="col">Имя</th>
                   <th scope="col">Фамилия</th>
-                  <th scope="col">Группа</th>
                     {% for topic in topics %}
                     <th scope="col">{{ topic }}</th>
                     {% endfor %}
@@ -27,7 +26,7 @@
                     <td>{{ item.surname }}</td>
                     <td>{{ item.group }}</td>
                     {% for result in item.results %}
-                        <td>{{ result }}</td>
+                        <td><a href = "">{{ result }}</a></td>
                     {% endfor %}
                 </tr>
               {% endfor %}

@@ -1,4 +1,4 @@
-from tests.models import TestData, Topic
+from tests.models import Test, Topic
 from account.models import User
 
 
@@ -11,21 +11,37 @@ class UserTests:
         self.results = tests
 
 
-def get_subject_results(subject):
+def get_subject_results(subject, user_status):
+
     users = User.objects.filter(testdata__topic__subject=subject).distinct()
     result = []
-
-    for user in users:
+    if user_status != 1:
+        user = user_status
         tests = []
         topics = Topic.objects.filter(subject=subject)
 
         for topic in topics:
-            test_data = TestData.objects.filter(user=user, topic=topic)
-            if len(test_data) > 0:
-                tests.append(test_data[0].best_result)
-            else:
-                tests.append('-')
+            test_data = Test.objects.filter(user=user, topic=topic)
+            for i in range(0, len(test_data)):
+                if test_data[i].points > 0:
+                    tests.append(test_data[i].points)
+                else:
+                    tests.append('-')
 
         result.append(UserTests(user, tests))
+    else:
+        for user in users:
+            tests = []
+            topics = Topic.objects.filter(subject=subject)
+
+            for topic in topics:
+                test_data = Test.objects.filter(user=user, topic=topic)
+                for i in range(0, len(test_data)):
+                    if test_data[i].points > 0:
+                        tests.append(test_data[i].points)
+                    else:
+                        tests.append('-')
+
+            result.append(UserTests(user, tests))
 
     return result
