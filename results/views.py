@@ -30,18 +30,14 @@ def show_groups(request):
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
 def show_res(request):
-    req = request.GET.get("topic")
-    id_base = req.split("/?")
-    topic_id = id_base[0]
-    topic = Topic.objects.get(id=topic_id)
-    id_base[1] = id_base[1].replace("groups=", "")
-    group_id = id_base[1]
-    tests = Test.objects.filter(topic=topic, user__study_group_id=group_id, last_question=None)
+    topic = Topic.objects.get(id=request.GET.get("topic"))
+    tests = Test.objects.filter(topic=topic, user__study_group_id=request.GET.get("groups"), last_question=None)
+
     total_questions = tests.filter().first().total_questions
     total_questions = range(1, total_questions+1)
     questions_data = []
-    for test_id in tests:
-        questions_data.append(QuestionsData.objects.filter(test=test_id))
+    for test in tests:
+        questions_data.append(test.questionsdata_set.all())
 
     final_count = []
     for i in total_questions:
