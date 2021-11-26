@@ -4,8 +4,10 @@
 {% block content %}
     <div>
         <h2 style="margin-bottom: 10px">Вопрос {{ test.question_count }} из {{ test.total_questions }}</h2>
-        {% if question.difficulty %}
-            <span style="margin-bottom: 30px" class="badge rounded-pill bg-danger">2 балла</span>
+        {% if question.difficulty == 3 %}
+            <span style="margin-bottom: 30px" class="badge rounded-pill bg-danger">3 балла</span>
+        {% elif question.difficulty == 2 %}
+            <span style="margin-bottom: 30px" class="badge rounded-pill bg-warning">2 балла</span>
         {% else %}
             <span style="margin-bottom: 30px" class="badge rounded-pill bg-secondary">1 балл</span>
         {% endif %}

@@ -43,8 +43,7 @@ def show_res(request):
     for i in total_questions:
         summa = 0
         for test_id in tests:
-            temp = QuestionsData.objects.filter(test_id=test_id.id)
-            summa += temp.get(counter=i).point
+            summa += QuestionsData.objects.get(counter=i, test_id=test_id.id).point
         final_count.append(summa)
 
     final_count.append(sum(final_count))

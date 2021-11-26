@@ -10,11 +10,20 @@ def check_answer(user, answer):
     global global_pattern
     # Добавляем очки за правильный ответ
     if answer == str(test.last_question.correct_answer):
-        test.points += 2 if test.last_question.difficulty else 1
-        point += 2 if test.last_question.difficulty else 1
+        if test.last_question.difficulty == 3:
+            test.points += 3
+        elif test.last_question.difficulty == 2:
+            test.points += 2
+        else:
+            test.points += 1
         test.streak += 1
     else:
-        test.streak = 0
+        if test.last_question.difficulty == 3:
+            test.streak = 3
+            test.save()
+            return False
+        else:
+            test.streak = 0
     test.save()
     db_questions_data = QuestionsData(
         difficulty=test.last_question.difficulty,
@@ -35,7 +44,13 @@ def check_answer(user, answer):
 
 
 def create_question(test):
-    pattern, question = generate.generate_question(topic=test.topic_id, difficulty=test.streak > 2)
+    if test.streak > 5 and len(Pattern.objects.filter(topic=test.topic_id, difficult=3)) > 0:
+        difficult = 3
+    elif test.streak > 2 and len(Pattern.objects.filter(topic=test.topic_id, difficult=2)) > 0:
+        difficult = 2
+    else:
+        difficult = 1
+    pattern, question = generate.generate_question(topic=test.topic_id, difficulty=difficult)
     global global_pattern
     global_pattern = pattern
     # Создаю новый Question
@@ -61,7 +76,7 @@ def get_test_data(test_id):
 
 
 def create_test(user, topic):
-    pattern, question = generate.generate_question(topic, False)
+    pattern, question = generate.generate_question(topic, 1)
     global global_pattern
     global_pattern = pattern
     # Создаём объект вопроса в бд
@@ -126,8 +141,7 @@ def get_subject_information(request):
         topic_info = []
 
         for topic in topics:
-            if len(Pattern.objects.filter(topic=topic, difficult=False)) > 0 and len(
-                    Pattern.objects.filter(topic=topic, difficult=True)) > 0:
+            if len(Pattern.objects.filter(topic=topic, difficult=1)) > 0 or len(Pattern.objects.filter(topic=topic, difficult=2)) > 0 or len(Pattern.objects.filter(topic=topic, difficult=3)) > 0:
                 test_data = TestData.objects.filter(user=user, topic=topic)
 
                 if len(test_data) > 0:
