@@ -57,6 +57,7 @@ html, body {
 }
 
 .mycontainer {
+    width: 100%;
     display: -webkit-flex;
     justify-content: space-between;
 }
