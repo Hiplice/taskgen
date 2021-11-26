@@ -13,8 +13,13 @@ class Topic(models.Model):
 
 
 class Pattern(models.Model):
+    levels = (
+        (1, 'Первый уровень'),
+        (2, 'Второй уровень'),
+        (3, 'Третий уровень'),
+    )
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    difficult = models.BooleanField(default=False)
+    difficult = models.IntegerField(default=1, choices=levels)
     heading = models.CharField(max_length=128)
     question_body = models.TextField(null=True)
     expression = models.TextField()
@@ -25,7 +30,7 @@ class Pattern(models.Model):
 
 
 class Question(models.Model):
-    difficulty = models.BooleanField(default=False)
+    difficulty = models.IntegerField()
     correct_answer = models.IntegerField()
     heading = models.CharField(max_length=128)
     body = models.TextField()
@@ -44,7 +49,7 @@ class Test(models.Model):
 
 
 class QuestionsData(models.Model):
-    difficulty = models.BooleanField(default=False)
+    difficulty = models.IntegerField(default=1)
     pattern = models.ForeignKey(Pattern, default=0, on_delete=models.CASCADE)
     correct_answer = models.IntegerField()
     heading = models.CharField(max_length=128)
