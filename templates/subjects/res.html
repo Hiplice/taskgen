@@ -7,10 +7,10 @@
     <table class="table">
         <thead>
         <th colspan="2">Студент</th>
-        <th colspan="{{ tqc }}">Номер вопроса</th>
+        <th class="text-center" colspan="{{ tqc }}">Номер вопроса</th>
         <tr>
             <th scope="col">Имя</th>
-            <th scope="col">Фамилия</th>
+            <th scope="col">Фамлия</th>
             {% for qustion_number in tq %}
                 <th scope="col">{{ qustion_number }}</th>
             {% endfor %}
@@ -22,6 +22,7 @@
                 <tr>
                     <td>{{ item.user.first_name }}</td>
                     <td>{{ item.user.last_name }}</td>
+
                     {% for questions in data %}
                         {% for question in questions %}
                             {% if question.test_id == item.id %}

@@ -38,9 +38,9 @@
                         <div class=" ">
                             <select name="study_group" class=" form-control" required id="id_study_group">
                                 <option value="" selected>Выберите группу</option>
-                                <option value="1">ИТ-211</option>
-                                <option value="2">ИТ-212</option>
-                                <option value="3">ИТ-213</option>
+                                {% for study_group in study_groups %}
+                                <option value="{{ study_group.id }}">{{ study_group.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                 </div>
