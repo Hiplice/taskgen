@@ -26,7 +26,7 @@
                     {% for questions in data %}
                         {% for question in questions %}
                             {% if question.test_id == item.id %}
-                                <td>{{question.point }} / {{question.max_point}}</td>
+                                <td>{{question.point}} / {{question.difficulty}}</td>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}

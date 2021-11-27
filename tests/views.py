@@ -23,7 +23,10 @@ def start_test(request):
         answer = handler.check_answer(request.user, request.POST['answer'])
         test = Test.objects.get(id=request.user.active_test)
         if test.question_count < test.total_questions:
-            handler.create_question(test)
+            if test.topic.id == 13:
+                handler.create_direct_question(test)
+            else:
+                handler.create_question(test)
         else:
             handler.update_result(request.user)
         result = HttpResponse(answer)
@@ -32,8 +35,13 @@ def start_test(request):
         result = render(request, 'tests/question.html', {'question': question, 'test': test, "progress": 100 * test.question_count / test.total_questions})
     elif request.GET.get('topic'):
         topic = request.GET.get("topic")
-        question, test = handler.create_test(request.user, topic)
-        result = render(request, 'tests/question.html', {'question': question, 'test': test, "progress": 100 * test.question_count / test.total_questions})
+        if topic == '13':
+            question, test = handler.create_direct_test(request.user, topic)
+            result = render(request, 'tests/question.html', {'question': question, 'test': test,
+                                                             "progress": 100 * test.question_count / test.total_questions})
+        else:
+            question, test = handler.create_test(request.user, topic)
+            result = render(request, 'tests/question.html', {'question': question, 'test': test, "progress": 100 * test.question_count / test.total_questions})
     else:
         result = redirect('/tests/')
 

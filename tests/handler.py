@@ -4,27 +4,7 @@ from json import dumps, loads
 global_pattern = Pattern.objects.get(id=6)
 
 
-def check_answer(user, answer):
-    test = Test.objects.get(id=user.active_test)
-    point = 0
-    global global_pattern
-    # Добавляем очки за правильный ответ
-    if answer == str(test.last_question.correct_answer):
-        if test.last_question.difficulty == 3:
-            test.points += 3
-        elif test.last_question.difficulty == 2:
-            test.points += 2
-        else:
-            test.points += 1
-        test.streak += 1
-    else:
-        if test.last_question.difficulty == 3:
-            test.streak = 3
-            test.save()
-            return False
-        else:
-            test.streak = 0
-    test.save()
+def create_db_questions(test, answer, point):
     db_questions_data = QuestionsData(
         difficulty=test.last_question.difficulty,
         correct_answer=test.last_question.correct_answer,
@@ -37,9 +17,35 @@ def check_answer(user, answer):
         counter=test.question_count,
         point=point
     )
-    db_questions_data.max_point=db_questions_data.difficulty+1
     db_questions_data.save()
+
+
+def check_answer(user, answer):
+    test = Test.objects.get(id=user.active_test)
     point = 0
+    global global_pattern
+    # Добавляем очки за правильный ответ
+    if answer == str(test.last_question.correct_answer):
+        if test.last_question.difficulty == 3:
+            test.points += 3
+            point += 3
+        elif test.last_question.difficulty == 2:
+            test.points += 2
+            point += 2
+        else:
+            test.points += 1
+            point += 1
+        test.streak += 1
+    else:
+        if test.last_question.difficulty == 3:
+            test.streak = 3
+            create_db_questions(test, answer, point)
+            test.save()
+            return False
+        else:
+            test.streak = 0
+    create_db_questions(test, answer, point)
+    test.save()
     return test.streak > 0
 
 
@@ -68,11 +74,61 @@ def create_question(test):
     test.save()
 
 
+def create_direct_question(test):
+    if test.streak > 5 and len(Pattern.objects.filter(topic=test.topic_id, difficult=3)) > 0:
+        difficult = 3
+    elif test.streak > 2 and len(Pattern.objects.filter(topic=test.topic_id, difficult=2)) > 0:
+        difficult = 2
+    else:
+        difficult = 1
+    pattern, question = generate.generate_direct_question(topic=test.topic_id, difficulty=difficult, starting=0,
+                                                          qc=test.question_count + 1)
+    global global_pattern
+    global_pattern = pattern
+    # Создаю новый Question
+    db_question = Question(
+        difficulty=pattern.difficult,
+        correct_answer=question.correct_answer,
+        heading=question.heading,
+        body=question.body,
+        answers=dumps(question.answers)
+    )
+    db_question.save()
+    test.last_question.delete()
+    test.last_question = db_question
+    test.question_count += 1
+    test.save()
+
+
 def get_test_data(test_id):
     test = Test.objects.get(id=test_id)
     questions = test.last_question
     questions.answers = loads(questions.answers)
     return test, questions
+
+
+def create_direct_test(user, topic):
+    pattern, question = generate.generate_direct_question(topic, 1, 1, 1)
+    global global_pattern
+    global_pattern = pattern
+    # Создаём объект вопроса в бд
+    db_question = Question(
+        difficulty=pattern.difficult,
+        correct_answer=question.correct_answer,
+        heading=question.heading,
+        body=question.body,
+        answers=dumps(question.answers)
+    )
+    db_question.save()
+
+    # Создаём объект теста в бд
+    db_question.answers = loads(db_question.answers)
+    test = Test(user=user, topic_id=topic, last_question_id=db_question.id, total_questions=12)
+    test.save()
+    user.active_test = test.id
+    user.save()
+
+    return db_question, test
 
 
 def create_test(user, topic):

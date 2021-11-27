@@ -35,6 +35,7 @@ def show_res(request):
 
     total_questions = tests.filter().first().total_questions
     total_questions = range(1, total_questions+1)
+
     questions_data = []
     for test in tests:
         questions_data.append(test.questionsdata_set.all())
@@ -47,6 +48,7 @@ def show_res(request):
         final_count.append(summa)
 
     final_count.append(sum(final_count))
+
     return render(request, 'subjects/res.html', {'topic': topic, 'data': questions_data,
                                                  'tests': tests,
                                                  'tq': total_questions,

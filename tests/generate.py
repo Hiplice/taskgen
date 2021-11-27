@@ -73,3 +73,42 @@ def generate_question(topic, difficulty):
         correct_answer=correct_ans,
         answers=generate_answers(correct_ans, 4, chosen_pattern.answer_from, chosen_pattern.answer_to)
     )
+
+
+def generate_direct_question(topic, difficulty, starting, qc):
+    if starting == 1:
+        chosen_pattern = Pattern.objects.get(id=19)
+    else:
+        if qc == 2:
+            chosen_pattern = Pattern.objects.get(id=20)
+        elif qc == 3:
+            chosen_pattern = Pattern.objects.get(id=21)
+        elif qc == 4:
+            chosen_pattern = Pattern.objects.get(id=22)
+        elif qc == 5:
+            chosen_pattern = Pattern.objects.get(id=7)
+        elif qc == 6:
+            chosen_pattern = Pattern.objects.get(id=7)
+        elif qc == 7:
+            chosen_pattern = Pattern.objects.get(id=7)
+        elif qc == 8:
+            chosen_pattern = Pattern.objects.get(id=7)
+        elif qc == 9:
+            chosen_pattern = Pattern.objects.get(id=8)
+        elif qc == 10:
+            chosen_pattern = Pattern.objects.get(id=8)
+        elif qc == 11:
+            chosen_pattern = Pattern.objects.get(id=8)
+        elif qc == 12:
+            chosen_pattern = Pattern.objects.get(id=8)
+
+    text, correct_ans = compute_pattern(chosen_pattern.expression, "$", chosen_pattern.generate_from,
+                                        chosen_pattern.generate_to)
+
+    return chosen_pattern, Question(
+        heading=chosen_pattern.heading,
+        body=text,
+        correct_answer=correct_ans,
+        answers=generate_answers(correct_ans, 4, chosen_pattern.answer_from, chosen_pattern.answer_to)
+    )
+

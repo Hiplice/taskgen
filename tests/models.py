@@ -59,7 +59,6 @@ class QuestionsData(models.Model):
     user_answer = models.IntegerField(default=0)
     counter = models.IntegerField(default=1)
     point = models.IntegerField(default=0)
-    max_point=models.IntegerField(default=0)
 
 
 class TestData(models.Model):
