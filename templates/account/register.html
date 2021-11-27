@@ -3,7 +3,7 @@
     <head>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
         {% load bootstrap %}
-        <title>Django Authentication Example</title>
+        <title>Registration Form</title>
     </head>
 
     <body>
@@ -12,8 +12,51 @@
         <form method="POST">
             {% csrf_token %}
             <div class="form-col">
-                {{ form|bootstrap }}
-                <input type="submit" value="Зарегистрироваться" >
+                <div class="form-group">
+                    <label class="control-label  " for="id_username">Имя пользователя</label>
+                    <div class=" ">
+                        <input type="text" name="username" maxlength="150" class=" form-control" required id="id_username">
+                        <p class="help-block">
+                                    Имя пользователя не более 150 символов, вклучая буквы, цифры и | @ | . | + | - | _ |
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label  " for="id_first_name">Имя</label>
+                    <div class=" ">
+                        <input type="text" name="first_name" maxlength="150" class=" form-control" id="id_first_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="control-label  " for="id_last_name">Фамилия</label>
+                        <div class=" ">
+                            <input type="text" name="last_name" maxlength="150" class=" form-control" id="id_last_name">
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label class="control-label  " for="id_study_group">Учебная группа</label>
+                        <div class=" ">
+                            <select name="study_group" class=" form-control" required id="id_study_group">
+                                <option value="" selected>Выберите группу</option>
+                                {% for study_group in study_groups %}
+                                <option value="{{ study_group.id }}">{{ study_group.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label class="control-label  " for="id_password">Пароль</label>
+                        <div class=" ">
+                            <input type="password" name="password" class=" form-control" required id="id_password">
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label class="control-label  " for="id_re_password">Повторите пароль</label>
+                        <div class=" ">
+                            <input type="password" name="re_password" class=" form-control" required id="id_re_password">
+                        </div>
+                </div>
+                <input type="submit" value="Зарегистрироваться" class="btn btn-primary">
             </div>
         </form>
     </div>

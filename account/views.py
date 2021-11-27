@@ -34,6 +34,7 @@ def auth(request):
 
 
 def register(request):
+    study_groups = StudyGroup.objects.all()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -44,7 +45,7 @@ def register(request):
         return redirect(to='/')
     else:
         form = RegisterForm()
-    return render(request, 'account/register.html', {'form': form})
+    return render(request, 'account/register.html', {'form': form, 'study_groups': study_groups})
 
 
 def settings(request):
