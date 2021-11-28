@@ -20,7 +20,7 @@ def show_topics(request):
 def show_groups(request):
     topic = Topic.objects.get(id=request.GET.get("topic"))
     groups = []
-    user_groups = Test.objects.filter(topic_id=topic)
+    user_groups = Test.objects.filter(topic_id=topic, user__study_group__id=not 1)
     for group in user_groups:
         if group.user.study_group not in groups:
             groups.append(StudyGroup.objects.get(id=group.user.study_group.id))

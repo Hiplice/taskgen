@@ -34,7 +34,7 @@ def auth(request):
 
 
 def register(request):
-    study_groups = StudyGroup.objects.all()
+    study_groups = StudyGroup.objects.exclude(id=1)
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
