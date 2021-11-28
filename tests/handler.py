@@ -123,7 +123,7 @@ def create_direct_test(user, topic):
 
     # Создаём объект теста в бд
     db_question.answers = loads(db_question.answers)
-    test = Test(user=user, topic_id=topic, last_question_id=db_question.id, total_questions=12)
+    test = Test(user=user, topic_id=topic, last_question_id=db_question.id, total_questions=20)
     test.save()
     user.active_test = test.id
     user.save()
