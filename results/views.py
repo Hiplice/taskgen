@@ -33,30 +33,29 @@ def show_groups(request):
 def show_res(request):
     topic = Topic.objects.get(id=request.GET.get("topic"))
     tests = Test.objects.filter(topic=topic, user__study_group_id=request.GET.get("groups"), last_question=None)
-    if tests:
-        total_questions = tests.filter().first().total_questions
-        total_questions = range(1, total_questions+1)
 
-        questions_data = []
-        for test in tests:
-            questions_data.append(test.questionsdata_set.all())
+    total_questions = tests.filter().first().total_questions
+    total_questions = range(1, total_questions+1)
 
-        final_count = []
-        for i in total_questions:
-            summa = 0
-            for test_id in tests:
-                summa += QuestionsData.objects.get(counter=i, test_id=test_id.id).point
-            final_count.append(summa)
+    questions_data = []
+    for test in tests:
+        questions_data.append(test.questionsdata_set.all())
 
-        final_count.append(sum(final_count))
+    final_count = []
+    for i in total_questions:
+        summa = 0
+        for test_id in tests:
+            summa += QuestionsData.objects.get(counter=i, test_id=test_id.id).point
+        final_count.append(summa)
 
-        return render(request, 'subjects/res.html', {'topic': topic, 'data': questions_data,
+    final_count.append(sum(final_count))
+
+    return render(request, 'subjects/res.html', {'topic': topic, 'data': questions_data,
                                                  'tests': tests,
                                                  'tq': total_questions,
                                                  'tqc': len(total_questions),
                                                  'fc': final_count})
-    else:
-        return render(request, 'base.html')
+
 
 @login_required(login_url='/account/auth/', redirect_field_name='')
 def show_results(request):
