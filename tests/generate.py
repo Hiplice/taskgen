@@ -77,46 +77,30 @@ def generate_question(topic, difficulty):
 
 def generate_direct_question(topic, difficulty, starting, qc):
     if starting == 1:
-        chosen_pattern = Pattern.objects.get(id=23)
+        chosen_pattern = Pattern.objects.get(id=43)
     else:
         if qc == 2:
-            chosen_pattern = Pattern.objects.get(id=24)
+            chosen_pattern = Pattern.objects.get(id=44)
         elif qc == 3:
-            chosen_pattern = Pattern.objects.get(id=25)
+            chosen_pattern = Pattern.objects.get(id=45)
         elif qc == 4:
-            chosen_pattern = Pattern.objects.get(id=26)
+            chosen_pattern = Pattern.objects.get(id=46)
         elif qc == 5:
-            chosen_pattern = Pattern.objects.get(id=27)
+            chosen_pattern = Pattern.objects.get(id=47)
         elif qc == 6:
-            chosen_pattern = Pattern.objects.get(id=28)
+            chosen_pattern = Pattern.objects.get(id=48)
         elif qc == 7:
-            chosen_pattern = Pattern.objects.get(id=29)
+            chosen_pattern = Pattern.objects.get(id=49)
         elif qc == 8:
-            chosen_pattern = Pattern.objects.get(id=30)
+            chosen_pattern = Pattern.objects.get(id=50)
         elif qc == 9:
-            chosen_pattern = Pattern.objects.get(id=31)
+            chosen_pattern = Pattern.objects.get(id=51)
         elif qc == 10:
-            chosen_pattern = Pattern.objects.get(id=32)
+            chosen_pattern = Pattern.objects.get(id=52)
         elif qc == 11:
-            chosen_pattern = Pattern.objects.get(id=33)
+            chosen_pattern = Pattern.objects.get(id=53)
         elif qc == 12:
-            chosen_pattern = Pattern.objects.get(id=34)
-        elif qc == 13:
-            chosen_pattern = Pattern.objects.get(id=35)
-        elif qc == 14:
-            chosen_pattern = Pattern.objects.get(id=36)
-        elif qc == 15:
-            chosen_pattern = Pattern.objects.get(id=37)
-        elif qc == 16:
-            chosen_pattern = Pattern.objects.get(id=38)
-        elif qc == 17:
-            chosen_pattern = Pattern.objects.get(id=39)
-        elif qc == 18:
-            chosen_pattern = Pattern.objects.get(id=40)
-        elif qc == 19:
-            chosen_pattern = Pattern.objects.get(id=41)
-        elif qc == 20:
-            chosen_pattern = Pattern.objects.get(id=42)
+            chosen_pattern = Pattern.objects.get(id=54)
 
     text, correct_ans = compute_pattern(chosen_pattern.expression, "$", chosen_pattern.generate_from,
                                         chosen_pattern.generate_to)
